@@ -45,7 +45,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec /usr/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -244,9 +244,6 @@ for_window [class="^.*"] border pixel 5
 #    }
 #}
 
-
-
-
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -285,17 +282,6 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-
-
-
-
-
-
-
-
-
-
-
 # Changes wallpaper
 exec --no-startup-id nitrogen --restore
 
@@ -320,3 +306,5 @@ bindsym $mod+minus scratchpad show
 # Start Polybar
 exec_always --no-startup-id $HOME/.config/polybar/shapes/launch.sh
 
+# Scrot
+bindsym --release Shift+Print exec scrot 'Screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/Screenshots && mv $f ~/Pictures/Screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/`ls -1 -t ~/Pictures/Screenshots | head -1`' # All screens
