@@ -31,15 +31,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && pactl set-sink-volume 1 toggle # mute sound
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% 
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -51,7 +50,7 @@ bindsym $mod+Return exec /usr/bin/kitty --config ~/.config/kitty/kitty.conf
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id ~/.config/polybar/docky/scripts/launcher.sh
+bindsym $mod+d exec --no-startup-id ~/.config/polybar/shapes/scripts/launcher.sh
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec rofi -modi drun,run -show drun
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -195,11 +194,11 @@ set $urgent-bg-color     #E53935
 
 # Color settings
 # class                 border  backgr  text    indicator child_border
-# client.focused          #8be9fd #8be9fd #282A36 #8be9fd   #8be9fd
-# client.focused_inactive #ffb86c #ffb86c #282A36 #ffb86c   #ffb86c
-# client.unfocused        #ff79c6 #ff79c6 #F8F8F2 #ff79c6   #ff79c6
-# client.urgent           #FF5555 #FF5555 #282A36 #FF5555   #FF5555
-# client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A3
+client.focused          #2776FF #2776FF #FFFFFF #2776FF   #2776FF
+client.focused_inactive #ffb86c #ffb86c #282A36 #ffb86c   #ffb86c
+client.unfocused        #ff79c6 #ff79c6 #F8F8F2 #ff79c6   #ff79c6
+client.urgent           #FF5555 #FF5555 #282A36 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A3
 
 # hide_edge_borders both
 
@@ -220,10 +219,11 @@ set $urgent-bg-color     #E53935
 
 # Sets iner gaps
 gaps inner 15
-gaps outer 7
+
+gaps outer 0
 
 # Hides titlebars
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 5
 #new_window 1pixel
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -288,10 +288,8 @@ exec --no-startup-id nitrogen --restore
 # Use picom compositor
 exec_always --no-startup-id picom --config ~/.config/picom.conf --experimental-backends -b
 
-# exec_always --no-startup-id ~/.config/polybar/launch.sh
-
 # Custom Shortcut
-bindsym $mod+Shift+w exec brave
+bindsym $mod+Shift+w exec brave-browser
 bindsym $mod+Shift+f exec thunar
 
 # Take Screenshot
@@ -304,7 +302,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Start Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --docky
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --shapes
 
 # Scrot
 bindsym --release Shift+Print exec scrot 'Screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/Screenshots && mv $f ~/Pictures/Screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/`ls -1 -t ~/Pictures/Screenshots | head -1`' # All screens
