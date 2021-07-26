@@ -1,8 +1,10 @@
-# i3-dotfiles
-Dotfiles for my i3 setup
+# My i3-dotfiles
 
-Polybar : [here](https://github.com/adi1090x/polybar-themes)
-
-Kitty Theme : [here](https://github.com/dexpota/kitty-themes)
+## Applications
+- Obsidian
+- Feh
+- Rofi
+- Polybar
+- Brave Browser with Infinite Dashboard
 
 ![Screenshot](https://raw.githubusercontent.com/whokilleddb/i3-dotfiles/main/Screenshot/SS.png)
