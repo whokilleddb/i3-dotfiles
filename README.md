@@ -7,4 +7,4 @@
 - Polybar
 - Brave Browser with Infinite Dashboard
 
-![Screenshot](https://raw.githubusercontent.com/whokilleddb/i3-dotfiles/main/Screenshot/SS.png)
+![Screenshot](https://raw.githubusercontent.com/whokilleddb/i3-dotfiles/main/Screenshot/Bojack.jpg)
